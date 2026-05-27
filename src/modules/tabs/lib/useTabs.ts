@@ -627,6 +627,24 @@ export function useTabs(initial?: Partial<TerminalTab>) {
     [tabs],
   );
 
+  const reorderTabs = useCallback((fromIndex: number, toIndex: number) => {
+    if (fromIndex === toIndex) return;
+    setTabs((curr) => {
+      if (
+        fromIndex < 0 ||
+        fromIndex >= curr.length ||
+        toIndex < 0 ||
+        toIndex >= curr.length
+      ) {
+        return curr;
+      }
+      const next = [...curr];
+      const [moved] = next.splice(fromIndex, 1);
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
+  }, []);
+
   /** Update a leaf's cwd; mirror to the tab's `cwd` when the leaf is active.
    * Bails out without setTabs when nothing actually changed — shell integration
    * re-emits OSC 7 on every prompt, including empty Enters, so this fires at
@@ -814,6 +832,7 @@ export function useTabs(initial?: Partial<TerminalTab>) {
     closeTab,
     updateTab,
     selectByIndex,
+    reorderTabs,
     setLeafCwd,
     focusPane,
     focusNextPaneInTab,

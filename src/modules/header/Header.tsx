@@ -43,6 +43,7 @@ type Props = {
   onClose: (id: number) => void;
   /** Promote a preview (transient) tab to persistent. */
   onPin: (id: number) => void;
+  onReorder: (fromIndex: number, toIndex: number) => void;
   onToggleSidebar: () => void;
   onSplit: (dir: "row" | "col") => void;
   /** Active tab is a terminal and below the per-tab pane cap. */
@@ -67,6 +68,7 @@ export function Header({
   onNewGitGraph,
   onClose,
   onPin,
+  onReorder,
   onToggleSidebar,
   onSplit,
   canSplit,
@@ -185,10 +187,7 @@ export function Header({
 
       {IS_MAC && <span className="mr-1 h-full w-px shrink-0 bg-border" />}
 
-      <div
-        className="flex min-w-0 flex-1 items-center gap-2"
-        data-tauri-drag-region
-      >
+      <div className="flex min-w-0 flex-1 items-center gap-2">
         <TabBar
           tabs={tabs}
           activeId={activeId}
@@ -200,6 +199,7 @@ export function Header({
           onNewGitGraph={onNewGitGraph}
           onClose={onClose}
           onPin={onPin}
+          onReorder={onReorder}
           compact={compact}
         />
         <div data-tauri-drag-region className="h-full min-w-2 flex-1" />
