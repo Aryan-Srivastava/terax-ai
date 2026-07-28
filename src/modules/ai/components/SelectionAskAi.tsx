@@ -12,7 +12,7 @@ export type SelectionAskAiProps = {
   onDismiss: () => void;
 };
 
-const W = 110;
+const W = 130;
 const OFFSET = 32;
 
 export function SelectionAskAi({
@@ -57,7 +57,7 @@ export function SelectionAskAi({
           e.stopPropagation();
           onAsk();
         }}
-        className="flex h-7 min-w-[130px] w-full items-center justify-between gap-1.5 rounded-md border border-border/60 bg-card/95 px-2 text-xs shadow-lg backdrop-blur-md hover:border-border hover:bg-accent"
+        className="flex h-7 w-full items-center justify-between gap-1.5 rounded-md border border-border/60 bg-card/95 px-2 text-xs shadow-lg backdrop-blur-md hover:border-border hover:bg-accent"
       >
         <span className="min-w-0 flex-1 truncate whitespace-nowrap">Ask Terax</span>
         <KbdGroup>
