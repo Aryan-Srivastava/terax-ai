@@ -282,7 +282,9 @@ export const SHORTCUTS: Shortcut[] = [
     id: "ai.askSelection",
     label: "Ask AI about selection",
     group: "AI",
-    defaultBindings: [{ [MOD_PROP]: true, key: "l" }],
+    // Keep Mod+L available to the shell for clear-screen, including when
+    // terminal text is selected and this shortcut is otherwise eligible.
+    defaultBindings: [{ [MOD_PROP]: true, key: "j" }],
   },
   {
     id: "agent.focusAttention",
